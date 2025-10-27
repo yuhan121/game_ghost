@@ -46,7 +46,7 @@ function startGame() {
 	overlay.style.display = 'none';
 	gameRunning = true;
 
-	ghostInterval = setInterval(spawnGhost, 800);
+	ghostInterval = setInterval(spawnGhost, 600);
 	countdown = setInterval(() => {
 		if (!gameRunning) return;
 		timeLeft--;

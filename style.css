@@ -10,7 +10,7 @@ body {
 	background-size: cover;
 	overflow: hidden;
 	height: 100vh;
-	font-family: 'Comic Sans MS', cursive, sans-serif;
+	font-family: 'Gloria Hallelujah', 'Comic Sans MS', cursive, sans-serif;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -34,8 +34,11 @@ body {
 }
 
 #start-btn {
-	top: 45%;
-	margin-top: 1rem;
+	top: 40%;
+	width: 40vw;
+	height: auto;
+	cursor: pointer;
+	z-index: 20;
 }
 
 #finish-btn {
@@ -44,21 +47,24 @@ body {
 	margin-top: 1rem;
 }
 
-#score {
+#scoreboard {
 	position: absolute;
 	top: 20px;
-	right: 20px;
+	left: 50%;
+	transform: translateX(-50%);
+	text-align: center;
 	font-size: 28px;
 	font-weight: bold;
 	color: #fff;
 	text-shadow: 2px 2px 4px black;
 	z-index: 15;
+	line-height: 1.5;
 }
 
 .ghost {
 	position: absolute;
-	width: 80px;
-	height: 80px;
+	width: 120px;
+	height: 120px;
 	cursor: pointer;
 	transition: transform 0.1s ease;
 }
