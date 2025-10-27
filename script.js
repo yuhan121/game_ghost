@@ -4,7 +4,7 @@ const overlay = document.getElementById('overlay');
 const gameContainer = document.getElementById('game-container');
 const scoreDisplay = document.getElementById('score');
 const timerDisplay = document.getElementById('timer');
-const ghosts = ['assets/ghost_spank.gif', 'assets/ghost_sock.gif', 'assets/ghost_horn.gif'];
+const ghosts = ['assets/ghost_spank.GIF', 'assets/ghost_sock.GIF', 'assets/ghost_horn.GIF'];
 
 let score = 0;
 let gameRunning = false;
