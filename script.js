@@ -63,7 +63,7 @@ function startGame() {
 	bgMusic.currentTime = 0;
 	bgMusic.play().catch(e => console.log("Music autoplay blocked:", e));
 
-	ghostInterval = setInterval(spawnGhost, 555);
+	ghostInterval = setInterval(spawnGhost, 444);
 	countdown = setInterval(() => {
 		if (!gameRunning) return;
 		timeLeft--;
