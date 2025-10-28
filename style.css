@@ -5,17 +5,24 @@
 	user-select: none;
 }
 
+html, body {
+	margin: 0;
+	padding: 0;
+	width: auto;
+	height: 100%;
+	overflow: hidden; /* no scrollbars */
+}
+
 body {
 	background: url('assets/background.PNG') no-repeat center center fixed;
-	background-size: contain; 
-	/* background-size: cover; */
+	background-size: cover;
 	overflow: hidden;
-	height: 100vh;
 	font-family: 'Gloria Hallelujah', 'Comic Sans MS', cursive, sans-serif;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+	background-color: #EE6A00;
 }
 
 #game-container {
@@ -51,7 +58,7 @@ body {
 
 #scoreboard {
 	position: absolute;
-	top: 20px;
+	top: 1.5rem;
 	left: 50%;
 	transform: translateX(-50%);
 	text-align: center;

@@ -6,10 +6,8 @@ const scoreDisplay = document.getElementById('score');
 const timerDisplay = document.getElementById('timer');
 const ghosts = ['assets/ghost_spank.GIF', 'assets/ghost_sock.GIF', 'assets/ghost_horn.GIF'];
 const bgMusic = document.getElementById('bg-music');
-const popSound = document.getElementById('catch-music');
 
-bgMusic.volume = 0.3;
-popSound.volume = 0.5;
+bgMusic.volume = 0.2;
 
 let score = 0;
 let gameRunning = false;
@@ -24,26 +22,32 @@ function randomPosition() {
 }
 
 function spawnGhost() {
+	if (!gameRunning) return;
+  
+	const ghostSize = 100; // size in px
+	const padding = 10;    // keep away from edges
+  
+	const x = Math.random() * (window.innerWidth - ghostSize - padding * 2) + padding;
+	const y = Math.random() * (window.innerHeight - ghostSize - padding * 2) + padding;
+  
 	const ghost = document.createElement('img');
 	ghost.src = ghosts[Math.floor(Math.random() * ghosts.length)];
 	ghost.classList.add('ghost');
-	const { x, y } = randomPosition();
 	ghost.style.left = x + 'px';
 	ghost.style.top = y + 'px';
 	gameContainer.appendChild(ghost);
 
 	ghost.addEventListener('click', () => {
-		if (!gameRunning) return;
-		score++;
-		scoreDisplay.textContent = 'Score: ' + score;
-		popSound.currentTime = 0; // rewind to start
-		popSound.play();
-		ghost.remove();
+	  if (!gameRunning) return;
+	  score++;
+	  scoreDisplay.textContent = 'Score: ' + score;
+	  ghost.remove();
 	});
 
 	// Remove after 1.5 seconds
 	setTimeout(() => ghost.remove(), 1500);
 }
+
 
 function startGame() {
 	if (ghostInterval) clearInterval(ghostInterval);
@@ -59,7 +63,7 @@ function startGame() {
 	bgMusic.currentTime = 0;
 	bgMusic.play().catch(e => console.log("Music autoplay blocked:", e));
 
-	ghostInterval = setInterval(spawnGhost, 700);
+	ghostInterval = setInterval(spawnGhost, 555);
 	countdown = setInterval(() => {
 		if (!gameRunning) return;
 		timeLeft--;
@@ -82,7 +86,7 @@ function endGame() {
 	finishBtn.style.display = 'block';
 	startBtn.style.display = 'none';
 	overlay.style.display = 'flex';
-	overlay.querySelector('h1').textContent = `Your score: ${score}`;
+	overlay.querySelector('h1').textContent = `You caught: ${score} !`;
 }
 
 startBtn.addEventListener('click', () => {
