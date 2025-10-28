@@ -7,7 +7,8 @@
 
 body {
 	background: url('assets/background.PNG') no-repeat center center fixed;
-	background-size: cover;
+	background-size: contain; 
+	/* background-size: cover; */
 	overflow: hidden;
 	height: 100vh;
 	font-family: 'Gloria Hallelujah', 'Comic Sans MS', cursive, sans-serif;
@@ -28,6 +29,7 @@ body {
 	position: absolute;
 	left: 50%;
 	transform: translateX(-50%);
+	margin-top: 1rem;
 	cursor: pointer;
 	width: 160px;
 	z-index: 20;
@@ -35,7 +37,7 @@ body {
 
 #start-btn {
 	top: 40%;
-	width: 40vw;
+	width: 280px;
 	height: auto;
 	cursor: pointer;
 	z-index: 20;
@@ -53,7 +55,7 @@ body {
 	left: 50%;
 	transform: translateX(-50%);
 	text-align: center;
-	font-size: 28px;
+	font-size: 24px;
 	font-weight: bold;
 	color: #fff;
 	text-shadow: 2px 2px 4px black;
@@ -63,8 +65,8 @@ body {
 
 .ghost {
 	position: absolute;
-	width: 120px;
-	height: 120px;
+	width: 100px;
+	height: 100px;
 	cursor: pointer;
 	transition: transform 0.1s ease;
 }
@@ -89,7 +91,7 @@ body {
 
 #overlay h1 {
 	color: #fff;
-	font-size: 48px;
-	margin-bottom: 20px;
+	font-size: 32px;
+	margin-bottom: 1rem;
 	text-shadow: 2px 2px 6px black;
 }

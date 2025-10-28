@@ -5,6 +5,11 @@ const gameContainer = document.getElementById('game-container');
 const scoreDisplay = document.getElementById('score');
 const timerDisplay = document.getElementById('timer');
 const ghosts = ['assets/ghost_spank.GIF', 'assets/ghost_sock.GIF', 'assets/ghost_horn.GIF'];
+const bgMusic = document.getElementById('bg-music');
+const popSound = document.getElementById('catch-music');
+
+bgMusic.volume = 0.3;
+popSound.volume = 0.5;
 
 let score = 0;
 let gameRunning = false;
@@ -31,6 +36,8 @@ function spawnGhost() {
 		if (!gameRunning) return;
 		score++;
 		scoreDisplay.textContent = 'Score: ' + score;
+		popSound.currentTime = 0; // rewind to start
+		popSound.play();
 		ghost.remove();
 	});
 
@@ -39,14 +46,20 @@ function spawnGhost() {
 }
 
 function startGame() {
+	if (ghostInterval) clearInterval(ghostInterval);
+	if (countdown) clearInterval(countdown);
 	score = 0;
 	timeleft = 10;
 	scoreDisplay.textContent = 'Score: 0';
 	timerDisplay.textContent = 'Time: 10s';
 	overlay.style.display = 'none';
+	finishBtn.style.display = 'none';
 	gameRunning = true;
 
-	ghostInterval = setInterval(spawnGhost, 600);
+	bgMusic.currentTime = 0;
+	bgMusic.play().catch(e => console.log("Music autoplay blocked:", e));
+
+	ghostInterval = setInterval(spawnGhost, 700);
 	countdown = setInterval(() => {
 		if (!gameRunning) return;
 		timeLeft--;
@@ -62,6 +75,8 @@ function endGame() {
 	gameRunning = false;
 	clearInterval(ghostInterval);
 	clearInterval(countdown);
+	bgMusic.pause();
+    bgMusic.currentTime = 0;
 	const remaining = document.querySelectorAll('.ghost');
 	remaining.forEach(g => g.remove());
 	finishBtn.style.display = 'block';
@@ -81,6 +96,7 @@ finishBtn.addEventListener('click', () => {
 	startBtn.style.display = 'block';
 	finishBtn.style.display = 'none';
 	overlay.querySelector('h1').textContent = 'Catch the Ghosts!';
+	timeLeft = 10;
 });
 
 window.addEventListener('resize', () => {
